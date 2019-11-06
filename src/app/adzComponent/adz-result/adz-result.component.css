@@ -1,0 +1,15 @@
+
+  .card-container {
+    /*  not needed styles to reflect it */ 
+    background: rgb(245, 240, 240);
+    padding: 50px;
+    color: rgb(0, 0, 0);
+    width: 100%;
+    height: auto;
+    margin:20px;
+    text-align: center;
+  }
+  .container {
+    display: auto;
+  }
+ 

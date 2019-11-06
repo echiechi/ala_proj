@@ -1,0 +1,55 @@
+<!--
+<h2>List of searched books</h2>
+<div>
+    <label>Filter the result: </label>
+    <select (change)="filterBooks($event.target.value)">
+      <option value="0">--All--</option>
+      <option *ngFor="let filterType of filterTypes" value={{filterType}}>
+        {{filterType}}
+
+      </option>
+    </select>
+  </div>
+-->
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Authors
+    </mat-expansion-panel-header>
+    <mat-selection-list #authorElem>
+      <mat-list-option *ngFor="let author of authors" (click)="filter(authorElem, 'authors')" [value]="author">
+        {{ author }}
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Categories
+    </mat-expansion-panel-header>
+    <mat-selection-list #categoryElem>
+      <mat-list-option *ngFor="let category of categories" (click)="filter(categoryElem, 'categories')"
+        [value]="category">
+        {{ category }}
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<mat-grid-list cols="4" gutterSize="10px">
+  <mat-grid-tile *ngFor="let book of filtredBooks">
+    <mat-card style="text-align: center; padding: 20px;" class="card-container">
+      <mat-card-header>
+        <mat-card-title style="text-align: center; width: fit-content;">{{book.title | truncate:[40]}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src={{book.imageLinks.thumbnail}} style="height:100%; width:auto" alt="Photo of the book">
+      <mat-card-content style="padding-bottom: 0px; text-align: center;">
+
+        <div *ngIf="book.authors">Author(s)</div>
+        <div *ngFor="let author of (book.authors? book.authors.slice(0,2):[])">{{author}} </div>
+
+
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
